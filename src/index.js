@@ -6,11 +6,21 @@ import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from "react-router-dom"
 
+import logger from 'redux-logger';
+
+import { applyMiddleware, legacy_createStore as createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from "./reducers/reducer";
+
+const store0123 = createStore(reducer, applyMiddleware(logger));
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+  <Provider store={store0123}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
